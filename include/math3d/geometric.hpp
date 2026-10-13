@@ -14,21 +14,19 @@ template <typename T, int N, bool Aligned>
 [[nodiscard]] constexpr T dot(const vec<T, N, Aligned>& a, const vec<T, N, Aligned>& b) noexcept {
     T sum{};
     for (int i = 0; i < N; ++i) {
-        sum += a[i] * b[i];
+        sum += a.data_[i] * b.data_[i];
     }
     return sum;
 }
 
-// clang-format off
 template <typename T, bool Aligned>
 [[nodiscard]] constexpr vec<T, 3, Aligned> cross(const vec<T, 3, Aligned>& a, const vec<T, 3, Aligned>& b) noexcept {
     return {
-        a[1] * b[2] - b[1] * a[2],
-        a[2] * b[0] - a[0] * b[2],
-        a[0] * b[1] - b[0] * a[1]
+        a.data_[1] * b.data_[2] - b.data_[1] * a.data_[2],
+        a.data_[2] * b.data_[0] - a.data_[0] * b.data_[2],
+        a.data_[0] * b.data_[1] - b.data_[0] * a.data_[1]
     };
 }
-// clang-format on
 
 template <typename T, int N, bool Aligned>
 [[nodiscard]] constexpr T length_sq(const vec<T, N, Aligned>& v) noexcept {

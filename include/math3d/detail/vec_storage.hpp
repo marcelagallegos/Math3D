@@ -8,13 +8,13 @@ namespace math3d::detail {
 
 template <typename T, int N, bool Aligned>
 struct vec_storage {
-    T data[N];
+    T data_[N];
 };
 
 template <typename T, bool Aligned>
 struct alignas(Aligned ? sizeof(T) * 2 : alignof(T)) vec_storage<T, 2, Aligned> {
     union {
-        T data[2];
+        T data_[2];
         struct {
             T x;
             T y;
@@ -29,7 +29,7 @@ struct alignas(Aligned ? sizeof(T) * 2 : alignof(T)) vec_storage<T, 2, Aligned> 
 template <typename T, bool Aligned>
 struct alignas(Aligned ? (sizeof(T) * 4) : alignof(T)) vec_storage<T, 3, Aligned> {
     union {
-        T data[3];
+        T data_[3];
         struct {
             T x;
             T y;
@@ -46,7 +46,7 @@ struct alignas(Aligned ? (sizeof(T) * 4) : alignof(T)) vec_storage<T, 3, Aligned
 template <typename T, bool Aligned>
 struct alignas(Aligned ? (sizeof(T) * 4) : alignof(T)) vec_storage<T, 4, Aligned> {
     union {
-        T data[4];
+        T data_[4];
         struct {
             T x;
             T y;

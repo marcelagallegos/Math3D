@@ -24,7 +24,7 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
 
     explicit constexpr vec(T s) noexcept {
         for (int i = 0; i < N; ++i) {
-            this->data[i] = s;
+            this->data_[i] = s;
         }
     }
 
@@ -34,14 +34,17 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
 
     [[nodiscard]] static constexpr int size() noexcept { return N; }
 
+    [[nodiscard]] constexpr T* data() noexcept { return this->data_; }
+    [[nodiscard]] constexpr const T* data() const noexcept { return this->data_; }
+
     [[nodiscard]] constexpr T& operator[](int i) noexcept {
         assert(i >= 0 && i < N && "vec index out of bounds");
-        return this->data[i];
+        return this->data_[i];
     }
 
     [[nodiscard]] constexpr const T& operator[](int i) const noexcept {
         assert(i >= 0 && i < N && "vec index out of bounds");
-        return this->data[i];
+        return this->data_[i];
     }
 
     [[nodiscard]] constexpr vec operator-() const noexcept
@@ -49,35 +52,35 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
     {
         vec result;
         for (int i = 0; i < N; ++i) {
-            result.data[i] = -this->data[i];
+            result.data_[i] = -this->data_[i];
         }
         return result;
     }
 
     constexpr vec& operator+=(arg_type v) noexcept {
         for (int i = 0; i < N; ++i) {
-            this->data[i] += v.data[i];
+            this->data_[i] += v.data_[i];
         }
         return *this;
     }
 
     constexpr vec& operator-=(arg_type v) noexcept {
         for (int i = 0; i < N; ++i) {
-            this->data[i] -= v.data[i];
+            this->data_[i] -= v.data_[i];
         }
         return *this;
     }
 
     constexpr vec& operator*=(T s) noexcept {
         for (int i = 0; i < N; ++i) {
-            this->data[i] *= s;
+            this->data_[i] *= s;
         }
         return *this;
     }
 
     constexpr vec& operator/=(T s) noexcept {
         for (int i = 0; i < N; ++i) {
-            this->data[i] /= s;
+            this->data_[i] /= s;
         }
         return *this;
     }
@@ -91,7 +94,7 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
     [[nodiscard]] friend constexpr bool operator==(arg_type a, arg_type b) noexcept {
         bool is_equal = true;
         for (int i = 0; i < N; ++i) {
-            is_equal &= (a.data[i] == b.data[i]);
+            is_equal &= (a.data_[i] == b.data_[i]);
         }
         return is_equal;
     }
