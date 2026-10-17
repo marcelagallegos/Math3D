@@ -90,6 +90,22 @@ struct mat {
     col_type cols_[N];
 };
 
+template <typename T, bool Aligned = false> using mat2 = mat<T, 2, 2, Aligned>;
+template <typename T, bool Aligned = false> using mat3 = mat<T, 3, 3, Aligned>;
+template <typename T, bool Aligned = false> using mat4 = mat<T, 4, 4, Aligned>;
+
+using mat2f = mat2<float>;
+using mat3f = mat3<float>;
+using mat4f = mat4<float>;
+
+using mat2d = mat2<double>;
+using mat3d = mat3<double>;
+using mat4d = mat4<double>;
+
+using mat2i = mat2<int32_t>;
+using mat3i = mat3<int32_t>;
+using mat4i = mat4<int32_t>;
+
 } // namespace math3d
 
 #endif // MATH3D_MAT_HPP
