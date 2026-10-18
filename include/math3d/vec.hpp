@@ -78,6 +78,7 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
     }
 
     constexpr vec& operator/=(T s) noexcept {
+        assert(s != T{0} && "division by zero in vec operator/=");
         for (int i = 0; i < N; ++i) {
             this->data_[i] /= s;
         }
