@@ -99,9 +99,9 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
     }
 };
 
-template <typename T> using vec2 = vec<T, 2>;
-template <typename T> using vec3 = vec<T, 3>;
-template <typename T> using vec4 = vec<T, 4>;
+template <typename T, bool Aligned = false> using vec2 = vec<T, 2, Aligned>;
+template <typename T, bool Aligned = false> using vec3 = vec<T, 3, Aligned>;
+template <typename T, bool Aligned = false> using vec4 = vec<T, 4, Aligned>;
 
 using vec2f = vec2<float>;
 using vec3f = vec3<float>;
