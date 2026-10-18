@@ -18,7 +18,6 @@ template <math3d::detail::scalar T, int N, bool Aligned = false>
 struct vec : public detail::vec_storage<T, N, Aligned> {
 
     using value_type = T;
-    using arg_type = std::conditional_t<(sizeof(T) * N <= 16), vec, const vec&>;
 
     constexpr vec() noexcept = default;
 
@@ -57,14 +56,14 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
         return result;
     }
 
-    constexpr vec& operator+=(arg_type v) noexcept {
+    constexpr vec& operator+=(const vec& v) noexcept {
         for (int i = 0; i < N; ++i) {
             this->data_[i] += v.data_[i];
         }
         return *this;
     }
 
-    constexpr vec& operator-=(arg_type v) noexcept {
+    constexpr vec& operator-=(const vec& v) noexcept {
         for (int i = 0; i < N; ++i) {
             this->data_[i] -= v.data_[i];
         }
@@ -85,13 +84,13 @@ struct vec : public detail::vec_storage<T, N, Aligned> {
         return *this;
     }
 
-    [[nodiscard]] friend constexpr vec operator+(vec lhs, arg_type rhs) noexcept { return lhs += rhs; }
-    [[nodiscard]] friend constexpr vec operator-(vec lhs, arg_type rhs) noexcept { return lhs -= rhs; }
+    [[nodiscard]] friend constexpr vec operator+(vec lhs, const vec& rhs) noexcept { return lhs += rhs; }
+    [[nodiscard]] friend constexpr vec operator-(vec lhs, const vec& rhs) noexcept { return lhs -= rhs; }
     [[nodiscard]] friend constexpr vec operator*(vec v, T s) noexcept { return v *= s; }
     [[nodiscard]] friend constexpr vec operator*(T s, vec v) noexcept { return v *= s; }
     [[nodiscard]] friend constexpr vec operator/(vec v, T s) noexcept { return v /= s; }
 
-    [[nodiscard]] friend constexpr bool operator==(arg_type a, arg_type b) noexcept {
+    [[nodiscard]] friend constexpr bool operator==(const vec& a, const vec& b) noexcept {
         bool is_equal = true;
         for (int i = 0; i < N; ++i) {
             is_equal &= (a.data_[i] == b.data_[i]);
