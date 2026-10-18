@@ -4,9 +4,9 @@
 #ifndef MATH3D_GEOMETRIC_HPP
 #define MATH3D_GEOMETRIC_HPP
 
-#include "vec.hpp"
 #include <cmath>
 #include <concepts>
+#include <math3d/vec.hpp>
 
 namespace math3d {
 

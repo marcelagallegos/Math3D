@@ -4,10 +4,10 @@
 #ifndef MATH3D_MAT_HPP
 #define MATH3D_MAT_HPP
 
-#include "detail/concepts.hpp"
-#include "geometric.hpp"
-#include "vec.hpp"
 #include <cassert>
+#include <math3d/detail/concepts.hpp>
+#include <math3d/geometric.hpp>
+#include <math3d/vec.hpp>
 
 namespace math3d {
 

@@ -4,11 +4,11 @@
 #ifndef MATH3D_VEC_HPP
 #define MATH3D_VEC_HPP
 
-#include "detail/concepts.hpp"
-#include "detail/vec_storage.hpp"
 #include <cassert>
 #include <concepts>
 #include <cstdint>
+#include <math3d/detail/concepts.hpp>
+#include <math3d/detail/vec_storage.hpp>
 #include <type_traits>
 
 namespace math3d {
