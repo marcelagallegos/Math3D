@@ -1,8 +1,8 @@
 // Copyright (c) Marcela Gallegos
 // SPDX-License-Identifier: MIT
 
-#ifndef MATH3D_TVEC_HPP
-#define MATH3D_TVEC_HPP
+#ifndef MATH3D_VEC_HPP
+#define MATH3D_VEC_HPP
 
 #include "detail/concepts.hpp"
 #include "detail/vec_storage.hpp"
@@ -118,4 +118,4 @@ using vec4i = vec4<int32_t>;
 
 } // namespace math3d
 
-#endif // MATH3D_TVEC_HPP
+#endif // MATH3D_VEC_HPP
