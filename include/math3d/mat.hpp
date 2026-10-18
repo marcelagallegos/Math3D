@@ -48,6 +48,14 @@ struct mat {
         return *this;
     }
 
+    friend constexpr col_type& operator*=(col_type& v, const mat& m) noexcept
+        requires(N == M)
+    {
+        return v = v * m;
+    }
+
+    constexpr mat& operator*=(const mat<T, N, N, Aligned>& m) noexcept { return *this = *this * m; }
+
     [[nodiscard]] friend constexpr mat operator*(mat m, T s) noexcept { return m *= s; }
     [[nodiscard]] friend constexpr mat operator*(T s, mat m) noexcept { return m *= s; }
 
@@ -66,14 +74,6 @@ struct mat {
         }
         return result;
     }
-
-    friend constexpr col_type& operator*=(col_type& v, const mat& m) noexcept
-        requires(N == M)
-    {
-        return v = v * m;
-    }
-
-    constexpr mat& operator*=(const mat<T, N, N, Aligned>& m) noexcept { return *this = *this * m; }
 
     // clang-format off
     template <int P>
